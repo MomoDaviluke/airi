@@ -15,6 +15,9 @@ jobs:
   deploy:
     name: Deploy - stage-web
     runs-on: ubuntu-latest
+    # Forks don't have the Cloudflare deploy secrets (CLOUDFLARE_API_TOKEN etc.);
+    # only the upstream repository should run this deployment.
+    if: github.repository == 'moeru-ai/airi'
     permissions:
       contents: read
       deployments: write
